@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Poker.Core.Model {
+﻿namespace Poker.Core.Model {
     public readonly struct Card {
-        public Rank Rank { get; }
-        public Suit Suit { get; }
+        private readonly byte value; // 0–51
 
-        public Card(Rank rank, Suit suit) {
-            Rank = rank;
-            Suit = suit;
+        public Card(byte value) {
+            if (value > 51)
+                throw new ArgumentOutOfRangeException(nameof(value), "Card value is incorrect!");
+
+            this.value = value;
         }
+
+        public byte Value => value;
+
+        public Rank Rank => (Rank)RankIndex;
+        public Suit Suit => (Suit)SuitIndex;
+        public int RankIndex => (value % 13) + 2; // 2–14
+        public int SuitIndex => value / 13; // 0–3
     }
 }

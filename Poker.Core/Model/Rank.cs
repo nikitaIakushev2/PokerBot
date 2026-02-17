@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Poker.Core.Model {
+﻿namespace Poker.Core.Model {
     public enum Rank : byte {
         Two = 2,
         Three = 3,
